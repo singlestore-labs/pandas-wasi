@@ -1,0 +1,13 @@
+# See: man pkg-config
+prefix=/opt/wasi-python
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Python
+Description: Build a C extension for Python
+Requires:
+Version: 3.10
+Libs.private: -z stack-size=524288 -Wl,--stack-first -Wl,--initial-memory=10485760 -L/opt/lib -L/opt/lib -lwasix -lwasi_vfs -L/opt/wasi-sdk/share/wasi-sysroot/lib/wasm32-wasi -lwasi-emulated-signal -lwasi-emulated-mman -L/home/ksmith/src/python-wasi/docker/lib --sysroot=/opt/wasi-sdk/share/wasi-sysroot -lpthread -lm
+Libs:
+Cflags: -I${includedir}/python3.10
